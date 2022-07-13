@@ -6,21 +6,21 @@ spec:
   selector:
     matchLabels:
       app: apps-web
-    replicas: 2
-    template:
-      metadata:
-        labels:
-          app: apps-web
-      spec:
-        containers:
-          - name: apps-web
-            image: oopscraft/apps-web:dev
-            imagePullPolicy: Always
-            ports:
-              - containerPort: 8080
-            env:
-              - name: SPRING_PROFILES_ACTIVE
-                value: dev
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: apps-web
+    spec:
+      containers:
+        - name: apps-web
+          image: oopscraft/apps-web:dev
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
 ---
 apiVersion: v1
 kind: Service
