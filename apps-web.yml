@@ -16,13 +16,13 @@ spec:
         - name: apps-web
           image: "oopscraft/apps-web:dev"
           imagePullPolicy: Always
+          imagePullSecrets:
+            - name: docker-public
           ports:
             - containerPort: 8080
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: dev
-      imagePullSecrets:
-        - name: docker-public
 
 ---
 apiVersion: v1
