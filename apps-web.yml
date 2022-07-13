@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: apps-web
-          image: "oopscraft/apps-web:dev"
+          image: oopscraft/apps-web
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
