@@ -6,23 +6,23 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: foo.bar.com
+    - host: argocd.oopscraft.org
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: service1
+                name: service/argocd-server
                 port:
                   number: 80
-    - host: bar.foo.com
+    - host: apps-web.oopscraft.org
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: service2
+                name: service/apps-web
                 port:
-                  number: 80
+                  number: 10000
