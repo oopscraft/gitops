@@ -15,7 +15,7 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80
+                  number: 443
     - host: apps-web.oopscraft.org
       http:
         paths:
