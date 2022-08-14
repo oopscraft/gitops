@@ -13,7 +13,7 @@ spec:
             path: /
             backend:
               service:
-                name: argocd-server
+                name: argocd
                 port:
                   number: 80
     - host: apps-web.oopscraft.org
