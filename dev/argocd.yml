@@ -3,5 +3,5 @@ kind: Service
 metadata:
   name: argocd
 spec:
-  clusterIP: None
+  type: ExternalName
   externalName: google.com
