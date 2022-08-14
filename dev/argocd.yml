@@ -8,5 +8,3 @@ spec:
       protocol: TCP
       port: 20000
       targetPort: 20000
-  externalIPs:
-    - 127.0.0.1
