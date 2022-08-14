@@ -10,7 +10,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: "/"
+            path: "/argocd"
             backend:
               service:
                 name: argocd-server
