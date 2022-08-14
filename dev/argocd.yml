@@ -3,16 +3,6 @@ kind: Service
 metadata:
   name: argocd
 spec:
-  ports:
-    port: 20000
+  type: ExternalName
+  externalName: argocd-server
 
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: argocd
-subnets:
-  - addresses:
-      - ip: 192.168.0.2
-  ports:
-    - port: 80
