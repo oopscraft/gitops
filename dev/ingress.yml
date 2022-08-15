@@ -2,15 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  #annotations:
+    #nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: argocd.oopscraft.org
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: "/"
             backend:
               service:
                 name: argocd
@@ -20,7 +20,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: "/"
             backend:
               service:
                 name: apps-web
