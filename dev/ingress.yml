@@ -25,4 +25,4 @@ spec:
               service:
                 name: apps-web
                 port:
-                  number: 10000
+                  number: 8080
