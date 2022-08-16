@@ -9,7 +9,7 @@ spec:
     - host: jenkins.oopscraft.org
       http:
         paths:
-        - pathType: Prefix
+          - pathType: Prefix
             path: "/"
             backend:
               service:
