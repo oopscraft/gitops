@@ -6,26 +6,26 @@ metadata:
     #nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: jenkins.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: jenkins
-                port:
-                  number: 9999
-    - host: argocd.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: argocd
-                port:
-                  number: 80
+#    - host: jenkins.oopscraft.org
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: jenkins
+#                port:
+#                  number: 9999
+#    - host: argocd.oopscraft.org
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: argocd
+#                port:
+#                  number: 80
     - host: apps-web.oopscraft.org
       http:
         paths:
