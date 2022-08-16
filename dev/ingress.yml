@@ -14,7 +14,7 @@ spec:
               service:
                 name: argocd
                 port:
-                  number: 443
+                  number: 80
     # jenkins
     - host: jenkins.oopscraft.org
       http:
