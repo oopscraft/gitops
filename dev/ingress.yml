@@ -28,7 +28,7 @@ spec:
                   number: 9999
     # nexus
     - host: nexus.oopscraft.org
-      https:
+      http:
         paths:
           - pathType: Prefix
             path: "/"
