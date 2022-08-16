@@ -2,35 +2,47 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: jenkins.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: jenkins
-                port:
-                  number: 9999
+    # argocd
     - host: argocd.oopscraft.org
       http:
         paths:
           - pathType: Prefix
-            path: "/"
+            path: /
             backend:
               service:
                 name: argocd
                 port:
                   number: 80
+    # jenkins
+    - host: jenkins.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: port-forward
+                port:
+                  number: 9999
+    # nexus
+    - host: nexus.oopscraft.org
+      https:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: port-forward
+                port:
+                  number: 9998
+    # apps-web
     - host: apps-web.oopscraft.org
       http:
         paths:
           - pathType: Prefix
-            path: "/"
+            path: /
             backend:
               service:
                 name: apps-web
