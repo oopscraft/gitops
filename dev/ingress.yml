@@ -9,7 +9,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: "/"
             backend:
               service:
                 name: argocd
@@ -20,7 +20,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: "/"
             backend:
               service:
                 name: loopback
@@ -31,7 +31,7 @@ spec:
       https:
         paths:
           - pathType: Prefix
-            path: /
+            path: "/"
             backend:
               service:
                 name: loopback
@@ -42,7 +42,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: "/"
             backend:
               service:
                 name: apps-web
