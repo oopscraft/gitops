@@ -1,25 +1,33 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
+  name: ingress-https
   annotations:
-    #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-#    # argocd
-#    - host: argocd.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: argocd
-#                port:
-#                  number: 80
-    # jenkins
+    # argocd
+    - host: argocd.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: argocd
+                port:
+                  number: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+   # jenkins
     - host: jenkins.oopscraft.org
       http:
         paths:
@@ -53,25 +61,3 @@ spec:
                 port:
                   number: 8080
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-https
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-spec:
-  rules:
-    # argocd
-    - host: argocd.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: argocd
-                port:
-                  number: 80
