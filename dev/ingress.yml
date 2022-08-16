@@ -8,9 +8,9 @@ metadata:
     #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
-    tls:
-      - hosts:
-        - argocd.oopscraft.org
+  tls:
+  - hosts:
+    - argocd.oopscraft.org
   rules:
     # argocd
     - host: argocd.oopscraft.org
