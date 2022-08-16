@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: port-forward
+  name: loopback
 spec:
   type: ExternalName
   externalName: 192.168.0.2

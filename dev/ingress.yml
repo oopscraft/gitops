@@ -23,7 +23,7 @@ spec:
             path: /
             backend:
               service:
-                name: port-forward
+                name: loopback
                 port:
                   number: 9999
     # nexus
@@ -34,7 +34,7 @@ spec:
             path: /
             backend:
               service:
-                name: port-forward
+                name: loopback
                 port:
                   number: 9998
     # apps-web
