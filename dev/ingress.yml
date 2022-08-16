@@ -19,7 +19,6 @@ spec:
                 name: argocd
                 port:
                   number: 80
-                protocol: "HTTPS"
     # jenkins
     - host: jenkins.oopscraft.org
       http:
