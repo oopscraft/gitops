@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: apps-web
-          image: 192.168.0.2:9997/oopscraft/apps-web:dev
+          image: 971936428072.dkr.ecr.ap-northeast-2.amazonaws.com/apps-web:dev
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
