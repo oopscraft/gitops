@@ -30,7 +30,6 @@ spec:
               value: |
                 -Dfile.encoding=UTF-8
                 -javaagent:/scouter/agent.java/scouter.agent.jar
-                -Dobj_name=apps-web
           volumeMounts:
             - mountPath: /scouter
               name: scouter
