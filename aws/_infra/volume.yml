@@ -1,0 +1,96 @@
+#==================================================
+# aws-efs storage class
+#==================================================
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: aws-efs
+  annotations:
+    service.beta.kubernetes.io/is-default-class: "false"
+parameters:
+  directoryPerms: "755"
+  fileSystemId: fs-0ff86329f7bfa8cc3
+  provisioningMode: efs-ap
+provisioner: efs.csi.aws.com
+
+---
+#==================================================
+# ins-data-kis pv
+#==================================================
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ins-data-kis
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: aws-efs
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0b9f94570400e68bf::fsap-033a7f3dec0c11bdf
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: ins-data-kis
+    namespace: default
+
+---
+#==================================================
+# ins-data-kis pvc
+#==================================================
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ins-data-kis
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: aws-efs
+
+---
+#==================================================
+# ins-data-fep pv
+#==================================================
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ins-data-fep
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: aws-efs
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0b9f94570400e68bf::fsap-094c13fc910611efa
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: ins-data-fep
+    namespace: default
+
+---
+#==================================================
+# ins-data-fep pvc
+#==================================================
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ins-data-fep
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: aws-efs
