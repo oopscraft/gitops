@@ -35,7 +35,7 @@ spec:
             - mountPath: /nfs
               name: nfs
       volumes:
-        - name: ins-data-kis
+        - name: nfs
           persistentVolumeClaim:
             claimName: nfs
 
