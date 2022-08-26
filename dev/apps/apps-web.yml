@@ -29,7 +29,7 @@ spec:
             - name: JAVA_TOOL_OPTIONS
               value: |
                 -Dfile.encoding=UTF-8
-                -javaagent:/nfs/scout`er/agent.java/scouter.agent.jar
+                -javaagent:/nfs/scouter/agent.java/scouter.agent.jar
                 -Dobj_name=apps-web
           volumeMounts:
             - mountPath: /nfs
