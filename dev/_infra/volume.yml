@@ -1,39 +1,39 @@
 #==================================================
-# nfs pv
+# scouter pv
 #==================================================
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs
+  name: scouter
 spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 1Gi
+    storage: 100Mi
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.0.2
-    path: /home/chomookun/nfs
+    path: /home/chomookun/scouter
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: nfs
+    name: scouter
     namespace: default
 
 ---
 #==================================================
-# nfs pvc
+# scouter pvc
 #==================================================
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs
+  name: scouter
   namespace: default
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 100Mi
 
 
