@@ -1,3 +1,6 @@
+#==================================================
+# apps-web deployment
+#==================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,6 +15,8 @@ spec:
       labels:
         app: apps-web
     spec:
+      imagePullSecrets:
+        - name: docker-public
       containers:
         - name: apps-web
           image: 192.168.0.2:9997/oopscraft/apps-web:dev
@@ -21,10 +26,24 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: dev
-      imagePullSecrets:
-        - name: docker-public
+            - name: JAVA_TOOL_OPTIONS
+              value: |
+                -Dfile.encoding=UTF-8
+                -javaagent:/nfs/scout`er/agent.java/scouter.agent.jar
+                -Dobj_name=apps-web
+          volumeMounts:
+            - mountPath: /nfs
+              name: nfs
+      volumes:
+        - name: ins-data-kis
+          persistentVolumeClaim:
+            claimName: nfs
+
 
 ---
+#==================================================
+# apps-web service
+#==================================================
 apiVersion: v1
 kind: Service
 metadata:
