@@ -38,7 +38,6 @@ spec:
           persistentVolumeClaim:
             claimName: scouter
 
-
 ---
 #==================================================
 # apps-web service
