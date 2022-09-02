@@ -92,11 +92,7 @@ sudo mv stern_linux_amd64 /usr/local/bin/stern
 sudo chmod +x /usr/local/bin/stern
 
 # usage
-stern --context {context} {name}
-
-# example
-stern --context arn:aws:eks:ap-northeast-2:857616209275:cluster/batch batch-admin
-
+stern --context {context} {application name}
 ```
 
 ## Installs gotty (web base tty)
@@ -127,11 +123,16 @@ kubectl --context ${context} get all -n prometheus
 ## Installs Grafana
 
 ```shell
+# install
 helm repo add grafana https://grafana.github.io/helm-charts
 helm search repo grafana
 kubectl --context ${context} create namespace grafana
 helm --kube-context ${context} install grafana grafana/grafana --namespace grafana
 kubectl --context ${context} get all -n grafana
+
+# get admin initial password
+# get admin password
+kubectl --context {context} -n grafana get secret grafana -o jsonpath="{.data.admin-password}" | base64 -d; echo
 ```
 
 
