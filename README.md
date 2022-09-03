@@ -122,6 +122,10 @@ kubectl --context ${context} get all -n prometheus
 
 ## Installs Grafana
 
+### Helm chart
+
+only test (if pod restarted, all data will be removed.)
+
 ```shell
 # install
 helm repo add grafana https://grafana.github.io/helm-charts
@@ -135,5 +139,10 @@ kubectl --context ${context} get all -n grafana
 kubectl --context {context} -n grafana get secret grafana -o jsonpath="{.data.admin-password}" | base64 -d; echo
 ```
 
+### Standalone
 
+```shell
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise-9.1.2.linux-amd64.tar.gz
+
+```
 
