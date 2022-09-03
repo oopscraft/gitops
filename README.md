@@ -82,6 +82,17 @@ helm upgrade -i aws-efs-csi-driver aws-efs-csi-driver/aws-efs-csi-driver \
     --set controller.serviceAccount.name=efs-csi-controller-sa
 ```
 
+## Install metrics server
+
+```shell
+wget https://github.com/kubernetes-sigs/metrics-server/releases/download/metrics-server-helm-chart-3.8.2/components.yaml
+vim ./components.yaml
+...
+    - args:
+      - --kubelet-insecure-tls
+      - --kubelet-preferred-address-types=InternalIP
+...
+```
 
 ## Installs stern (container log tail)
 
