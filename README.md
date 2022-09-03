@@ -93,8 +93,7 @@ vim ./components.yaml
       - --kubelet-preferred-address-types=InternalIP
 ...
 kubectl --context ${context} apply -f ./components.yaml
-kubectl --context ${context} top node
-kubectl --context ${context} top pod
+kubectl --context ${context} top node && kubectl --context ${context} top pod
 ```
 
 ## Installs stern (container log tail)
