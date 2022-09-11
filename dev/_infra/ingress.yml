@@ -58,6 +58,17 @@ spec:
                 name: loopback
                 port:
                   number: 9998
+    # scouter
+    - host: scouter.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: loopback
+                port:
+                  number: 6188
     # apps-web
     - host: apps-web.oopscraft.org
       http:
