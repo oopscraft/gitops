@@ -16,7 +16,7 @@ spec:
         app: apps-web
     spec:
       imagePullSecrets:
-        - name: docker-public
+        - name: docker-credentials
       containers:
         - name: apps-web
           image: nexus.oopscraft.org:9997/oopscraft/apps-web:dev
