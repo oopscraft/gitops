@@ -9,6 +9,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100mb"
 spec:
   ingressClassName: nginx
   rules:
@@ -33,6 +34,8 @@ kind: Ingress
 metadata:
   name: ingress-http
   namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "100mb"
 spec:
   ingressClassName: nginx
   rules:
