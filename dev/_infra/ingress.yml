@@ -21,7 +21,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: argocd-route
+                name: argocd
                 port:
                   number: 443
 
@@ -47,7 +47,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: loopback
+                name: ip_192_168_0_2 
                 port:
                   number: 9999
     # nexus
@@ -58,7 +58,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: loopback
+                name: ip_192_168_0_2
                 port:
                   number: 9998
     # scouter
@@ -69,9 +69,31 @@ spec:
             path: "/"
             backend:
               service:
-                name: loopback
+                name: ip_192_168_0_2
                 port:
                   number: 6188
+    # prometheus
+    - host: prometheus.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: prometheus
+                port:
+                  number: 80
+    # grafana
+    - host: grafana.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip_192_168_0_2
+                port:
+                  number: 3000
     # apps-web
     - host: apps-web.oopscraft.org
       http:
@@ -83,25 +105,3 @@ spec:
                 name: apps-web
                 port:
                   number: 8080
-    # prometheus
-    - host: prometheus.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: prometheus-route
-                port:
-                  number: 80
-    # grafana
-    - host: grafana.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: loopback
-                port:
-                  number: 3000
