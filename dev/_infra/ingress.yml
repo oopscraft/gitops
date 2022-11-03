@@ -47,7 +47,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: ip_192_168_0_2 
+                name: ip-192-168-0-2 
                 port:
                   number: 9999
     # nexus
@@ -58,7 +58,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: ip_192_168_0_2
+                name: ip-192-168-0-2
                 port:
                   number: 9998
     # scouter
@@ -69,7 +69,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: ip_192_168_0_2
+                name: ip-192-168-0-2
                 port:
                   number: 6188
     # prometheus
@@ -91,7 +91,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: ip_192_168_0_2
+                name: ip-192-168-0-2
                 port:
                   number: 3000
     # apps-web
