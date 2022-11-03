@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: argocd-route
-spec:
-  type: ExternalName
-  externalName: argocd-server.argocd.svc.cluster.local
-
-

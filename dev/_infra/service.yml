@@ -1,0 +1,48 @@
+#==================================================
+# ip_192_168_0_2
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: ip_192_168_0_2
+spec:
+  type: ExternalName
+  externalName: 192.168.0.2
+
+---
+#==================================================
+# ip_192_168_0_5
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: ip_192_168_0_5
+spec:
+  type: ExternalName
+  externalName: 192.168.0.5
+
+---
+#==================================================
+# argocd 
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd
+spec:
+  type: ExternalName
+  externalName: argocd-server.argocd.svc.cluster.local
+
+---
+#==================================================
+# prometheus 
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  type: ExternalName
+  externalName: prometheus-server.prometheus.svc.cluster.local
+
+
