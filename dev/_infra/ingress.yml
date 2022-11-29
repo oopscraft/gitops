@@ -117,7 +117,7 @@ spec:
                 port:
                   number: 8080
     # keycloak
-    - host: keycloak
+    - host: keycloak.oopscraft.org
       http:
         paths:
           - pathType: Prefix
