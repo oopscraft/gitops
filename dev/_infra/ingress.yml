@@ -125,5 +125,6 @@ spec:
             backend:
               service:
                 name: ip-192-168-0-2
-                port: 9996
+                port: 
+                  number: 9996
 
