@@ -116,3 +116,14 @@ spec:
                 name: apps-web
                 port:
                   number: 8080
+    # keycloak
+    - host: keycloak
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port: 9996
+
