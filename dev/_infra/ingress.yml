@@ -127,4 +127,15 @@ spec:
                 name: ip-192-168-0-2
                 port: 
                   number: 9996
+    # torrent
+    - host: torrent.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 9091
 
