@@ -15,24 +15,22 @@ kubectl --context {context} create namespace argocd
 # install
 kubectl --context {context} apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-# get admin password
-kubectl --context {context} -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-
 # create port-forward to argocd-server
 kubectl port-forward --address 0.0.0.0 -n argocd service/argocd-server ${port}:443
 
+# get admin password
+kubectl --context {context} -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
 # download argocd CLI
-sudo curl --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64 
+sudo curl --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 sudo chmod +x /usr/local/bin/argocd
 
 # login
 argocd login --insecure {host}:{port}
 
-
 # update admin password
 argocd account update-password --account admin --current-password {current password} --new-password {new password}
 
- 
 ```
 
 

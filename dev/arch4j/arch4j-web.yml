@@ -1,25 +1,25 @@
 #==================================================
-# apps-web deployment
+# arch4j-web deployment
 #==================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apps-web
+  name: arch4j-web
 spec:
   selector:
     matchLabels:
-      app: apps-web
+      app: arch4j-web
   replicas: 2
   template:
     metadata:
       labels:
-        app: apps-web
+        app: arch4j-web
     spec:
       imagePullSecrets:
         - name: docker-credentials
       containers:
-        - name: apps-web
-          image: nexus.oopscraft.org:9997/oopscraft/apps-web:dev
+        - name: arch4j-web
+          image: nexus.oopscraft.org:9997/oopscraft/arch4j-web:dev
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -40,12 +40,12 @@ spec:
 
 ---
 #==================================================
-# apps-web service
+# arch4j-web service
 #==================================================
 apiVersion: v1
 kind: Service
 metadata:
-  name: apps-web
+  name: arch4j-web
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
     prometheus.io/scrape: "true"
@@ -54,7 +54,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: apps-web
+    app: arch4j-web
   ports:
     - protocol: TCP
       port: 8080
