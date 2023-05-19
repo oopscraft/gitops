@@ -20,31 +20,29 @@
 #spec:
 #  type: ExternalName
 #  externalName: 192.168.0.5
-
----
-#==================================================
-# argocd 
-#==================================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: argocd
-#  namespace: argocd
-spec:
-  type: ExternalName
-  externalName: argocd-server.argocd.svc.cluster.local
-
----
-#==================================================
-# prometheus 
-#==================================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus
-#  namespace: prometheus
-spec:
-  type: ExternalName
-  externalName: prometheus-server.prometheus.svc.cluster.local
+#
+#---
+##==================================================
+## argocd
+##==================================================
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: argocd
+#spec:
+#  type: ExternalName
+#  externalName: argocd-server.argocd.svc.cluster.local
+#
+#---
+##==================================================
+## prometheus
+##==================================================
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: prometheus
+#spec:
+#  type: ExternalName
+#  externalName: prometheus-server.prometheus.svc.cluster.local
 
 
