@@ -1,5 +1,7 @@
 # GITOPS
 
+## docker registry from exiting config file
+kubectl create secret docker-registry docker-credentials --from-file=.dockerconfigjson=${HOME}/.docker/config.json
 
 ## Directory structure
 
