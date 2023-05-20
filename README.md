@@ -63,13 +63,19 @@ argocd login --insecure 192.168.0.2:8080
 argocd account update-password --account admin --current-password {current password} --new-password {new password}
 ```
 
+### installs ingress addons
+```shell
+minikube addons enable ingress
+minikube addons enable ingress-dns
+```
+
+
 
 ### docker registry from exiting config file
 ```shell
 kubectl create secret docker-registry docker-credentials --from-file=.dockerconfigjson=${HOME}/.docker/config.json
 kubectl get secret docker-credentials --output="jsonpath={.data.\.dockerconfigjson}" | base64 -d; echo
 ```
-
 
 
 
