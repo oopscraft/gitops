@@ -20,7 +20,7 @@ spec:
         - name: docker-credentials
       containers:
         - name: arch4j-web
-          image: nexus.oopscraft.org:9997/oopscraft/arch4j-web:dev
+          image: 192.168.0.2:9997/oopscraft/arch4j-web:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
