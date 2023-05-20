@@ -1,141 +1,141 @@
-##==================================================
-## ingress-https
-##==================================================
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: ingress-https
-#  namespace: default
-#  annotations:
-#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-#    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
-#spec:
-#  ingressClassName: nginx
-#  rules:
-#    # argocd
-#    - host: argocd.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: argocd
-#                port:
-#                  number: 443
-#
-#---
-##==================================================
-## ingress-http
-##==================================================
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: ingress-http
-#  namespace: default
-#  annotations:
-#    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
-#spec:
-#  ingressClassName: nginx
-#  rules:
-#    # code-server
-#    - host: code-server.oopscraft.org
-#      http:
-#         paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-5
-#                port:
-#                  number: 8000
-#    # jenkins
-#    - host: jenkins.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-2
-#                port:
-#                  number: 9999
-#    # nexus
-#    - host: nexus.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-2
-#                port:
-#                  number: 9998
-#    # scouter
-#    - host: scouter.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-2
-#                port:
-#                  number: 6188
-#    # prometheus
-#    - host: prometheus.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: prometheus
-#                port:
-#                  number: 80
-#    # grafana
-#    - host: grafana.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-2
-#                port:
-#                  number: 3000
-#    # apps-web
-#    - host: apps-web.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: apps-web
-#                port:
-#                  number: 8080
-#    # keycloak
-#    - host: keycloak.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-2
-#                port:
-#                  number: 9996
-#    # torrent
-#    - host: torrent.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: ip-192-168-0-2
-#                port:
-#                  number: 9091
-#
+#==================================================
+# ingress-https
+#==================================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-https
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+spec:
+  ingressClassName: nginx
+  rules:
+    # argocd
+    - host: argocd.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: argocd
+                port:
+                  number: 443
+
+---
+#==================================================
+# ingress-http
+#==================================================
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-http
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+spec:
+  ingressClassName: nginx
+  rules:
+    # code-server
+    - host: code-server.oopscraft.org
+      http:
+         paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-5
+                port:
+                  number: 8000
+    # jenkins
+    - host: jenkins.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 9999
+    # nexus
+    - host: nexus.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 9998
+    # scouter
+    - host: scouter.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 6188
+    # prometheus
+    - host: prometheus.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: prometheus
+                port:
+                  number: 80
+    # grafana
+    - host: grafana.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 3000
+    # apps-web
+    - host: apps-web.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: apps-web
+                port:
+                  number: 8080
+    # keycloak
+    - host: keycloak.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 9996
+    # torrent
+    - host: torrent.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ip-192-168-0-2
+                port:
+                  number: 9091
+

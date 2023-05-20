@@ -1,40 +1,77 @@
 # GITOPS
 
-## docker registry from exiting config file
-kubectl create secret docker-registry docker-credentials --from-file=.dockerconfigjson=${HOME}/.docker/config.json
-kubectl get secret docker-credentials --output="jsonpath={.data.\.dockerconfigjson}" | base64 -d; echo
 
 ## Directory structure
-
+```shell
 /{Profile}/{Application}/{Application Container}.yml
+```
+
+
+
+## Installs minikube
+
+### delete minikube
+```shell
+minikube delete
+minikube delete --all
+```
+
+### starts minikube
+```shell
+minikube start --insecure-registry=192.168.0.2:9997
+```
+
+### test insecure registry
+```shell
+minikube ssh
+docker pull 192.168.0.2:9997/oopscraft/arch4j-web
+```
 
 
 ## ARGOCD Installation
 
-```bash
-# creates namespace
-kubectl --context {context} create namespace argocd
+### create namespace
+```shell
+kubectl create namespace argocd
+```
 
-# install
-kubectl --context {context} apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+### install argocd
+```shell
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
 
-# create port-forward to argocd-server
-kubectl port-forward --address 0.0.0.0 -n argocd service/argocd-server ${port}:443
-
-# get admin password
-kubectl --context {context} -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-
-# download argocd CLI
+### install argocd CLI
+```shell
 sudo curl --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 sudo chmod +x /usr/local/bin/argocd
+```
+
+### create port-forward to argocd-server
+```shell
+kubectl port-forward --address 0.0.0.0 -n argocd service/argocd-server 8080:443
+```
+
+### change admin password
+```shell
+# find initial password
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
 # login
-argocd login --insecure {host}:{port}
+argocd login --insecure 192.168.0.2:8080
 
-# update admin password
+# update password
 argocd account update-password --account admin --current-password {current password} --new-password {new password}
-
 ```
+
+
+### docker registry from exiting config file
+```shell
+kubectl create secret docker-registry docker-credentials --from-file=.dockerconfigjson=${HOME}/.docker/config.json
+kubectl get secret docker-credentials --output="jsonpath={.data.\.dockerconfigjson}" | base64 -d; echo
+```
+
+
+
 
 
 ## installs ingress nginx
