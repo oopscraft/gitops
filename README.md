@@ -2,6 +2,7 @@
 
 ## docker registry from exiting config file
 kubectl create secret docker-registry docker-credentials --from-file=.dockerconfigjson=${HOME}/.docker/config.json
+kubectl get secret docker-credentials --output="jsonpath={.data.\.dockerconfigjson}" | base64 -d; echo
 
 ## Directory structure
 
