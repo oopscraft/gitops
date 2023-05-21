@@ -27,6 +27,11 @@ minikube ssh
 docker pull 192.168.0.2:9997/oopscraft/arch4j-web
 ```
 
+### creates kubectl command link
+```shell
+sudo ln -sf $(which minikube) /usr/local/bin/kubectl
+```
+
 
 ## ARGOCD Installation
 
