@@ -31,13 +31,13 @@ spec:
               value: |
                 -Dfile.encoding=UTF-8
 #                -javaagent:/scouter/agent.java/scouter.agent.jar
-          volumeMounts:
-            - mountPath: /scouter
-              name: scouter
-      volumes:
-        - name: scouter
-          persistentVolumeClaim:
-            claimName: scouter
+#          volumeMounts:
+#            - mountPath: /scouter
+#              name: scouter
+#      volumes:
+#        - name: scouter
+#          persistentVolumeClaim:
+#            claimName: scouter
 
 ---
 #==================================================
