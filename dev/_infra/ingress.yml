@@ -106,14 +106,14 @@ spec:
                 port:
                   number: 3000
     # apps-web
-    - host: apps-web.oopscraft.org
+    - host: arch4j-web.oopscraft.org
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: apps-web
+                name: arch4j-web
                 port:
                   number: 8080
     # keycloak
