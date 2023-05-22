@@ -27,6 +27,8 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: dev
+            - name: LOGGING_LEVEL_ROOT
+              value: INFO
             - name: JAVA_TOOL_OPTIONS
               value: |
                 -Dfile.encoding=UTF-8
