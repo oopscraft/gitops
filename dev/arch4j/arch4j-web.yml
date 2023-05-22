@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: arch4j-web
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
