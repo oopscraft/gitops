@@ -83,9 +83,16 @@ kubectl get secret docker-credentials --output="jsonpath={.data.\.dockerconfigjs
 ```
 
 
+## Install helm chart
+```shell
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get-helm-3 > get_helm.sh
+chmod +x ./get_helm.sh
+./get_helm.sh
+helm --help
+```
 
 
-## installs ingress nginx
+## (AWS) installs ingress nginx
 
 ```shell
 # download ingress nginx deploy yaml
@@ -116,7 +123,7 @@ kubectl --context {context} -n ingress-nginx get all
 ```
 
 
-## AWS EFS driver (AWS EKS)
+## (AWS) AWS EFS driver (AWS EKS)
 
 ```shell
 helm repo add aws-efs-csi-driver https://kubernetes-sigs.github.io/aws-efs-csi-driver/
@@ -174,11 +181,11 @@ sudo chmod +x /usr/local/bin/gotty
 ## Installs Prometheus
 
 ```shell
-helm --kube-context ${context} repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm search repo prometheus
-kubectl --context ${context} create namespace prometheus
-helm --kube-context ${context} install prometheus prometheus-community/prometheus --namespace prometheus
-kubectl --context ${context} get all -n prometheus
+kubectl create namespace prometheus
+helm install prometheus prometheus-community/prometheus --namespace prometheus
+kubectl get all -n prometheus
 ```
 
 
