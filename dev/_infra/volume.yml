@@ -4,7 +4,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: scouter
+  name: nfs
 spec:
   accessModes:
     - ReadWriteMany
@@ -13,21 +13,21 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: 192.168.0.2
-    path: /home/chomookun/scouter
+    path: /home/chomookun/nfs
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: scouter
+    name: nfs
     namespace: default
 
 ---
 #==================================================
-# scouter pvc
+# nfs pvc
 #==================================================
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: scouter
+  name: nfs
   namespace: default
 spec:
   accessModes:
