@@ -38,7 +38,7 @@ spec:
             - name: JASYPT_ENCRYPTOR_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: secret
+                  name: secret
                   value: pbe_password
             - name: SPRING_PROFILES_ACTIVE
               value: dev
