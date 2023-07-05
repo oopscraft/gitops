@@ -39,7 +39,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: secret
-                  value: 'pbe_password'
+                  value: password
             - name: SPRING_PROFILES_ACTIVE
               value: dev
             - name: JAVA_TOOL_OPTIONS
