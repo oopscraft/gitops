@@ -39,7 +39,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: secret
-                  key: password
+                  key: jasypt_encryptor_password
             - name: SPRING_PROFILES_ACTIVE
               value: dev
             - name: JAVA_TOOL_OPTIONS
