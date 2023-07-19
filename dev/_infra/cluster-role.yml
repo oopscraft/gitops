@@ -15,6 +15,7 @@ metadata:
   name: cluster-admin-binding
 subjects:
   - kind: ServiceAccount
+    namespace: default
     name: batman
 roleRef:
   kind: ClusterRole
