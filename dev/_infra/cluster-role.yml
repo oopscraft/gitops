@@ -14,10 +14,6 @@ kind: ClusterRoleBinding
 metadata:
   name: cluster-admin-binding
 subjects:
-  - kind: User
-    name: batman
-  - kind: Group
-    name: batman
   - kind: ServiceAccount
     name: batman
 roleRef:
