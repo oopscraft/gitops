@@ -16,7 +16,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     namespace: default
-    name: batman
+    name: default
 roleRef:
   kind: ClusterRole
   name: cluster-admin
