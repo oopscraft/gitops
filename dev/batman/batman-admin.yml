@@ -5,6 +5,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: batman-admin
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -19,24 +20,38 @@ spec:
         - name: docker-credentials
       containers:
         - name: batman-admin
-          image: nexus.oopscraft.org:9997/oopscraft/batman-admin:dev
+          image: 192.168.0.2:9997/oopscraft/batman-admin:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
           env:
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: jasypt_encryptor_password
             - name: SPRING_PROFILES_ACTIVE
               value: dev
             - name: JAVA_TOOL_OPTIONS
               value: |
                 -Dfile.encoding=UTF-8
-                -javaagent:/scouter/agent.java/scouter.agent.jar
           volumeMounts:
-            - mountPath: /scouter
-              name: scouter
+            - mountPath: /nfs
+              name: nfs
       volumes:
-        - name: scouter
+        - name: nfs
           persistentVolumeClaim:
-            claimName: scouter
+            claimName: nfs
 
 ---
 #==================================================
@@ -46,6 +61,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: batman-admin
+  namespace: default
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
     prometheus.io/scrape: "true"
