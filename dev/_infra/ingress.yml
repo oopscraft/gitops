@@ -116,6 +116,17 @@ spec:
                 name: arch4j-web
                 port:
                   number: 8080
+    # batman-admin
+    - host: batman-admin.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: batman-admin
+                port:
+                  number: 8080
     # keycloak
     - host: keycloak.oopscraft.org
       http:
