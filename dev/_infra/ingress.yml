@@ -127,6 +127,17 @@ spec:
                 name: batman-admin
                 port:
                   number: 8080
+    # batman-admin
+    - host: soma-admin.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: soma-admin
+                port:
+                  number: 8080
     # keycloak
     - host: keycloak.oopscraft.org
       http:
