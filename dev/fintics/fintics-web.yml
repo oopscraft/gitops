@@ -1,0 +1,77 @@
+#==================================================
+# fintics-web deployment
+#==================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintics-web
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: fintics-web
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: fintics-web
+    spec:
+      imagePullSecrets:
+        - name: docker-credentials
+      containers:
+        - name: fintics-web
+          image: 192.168.0.2:9997/oopscraft/fintics-web:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          env:
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: jasypt_encryptor_password
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: JAVA_TOOL_OPTIONS
+              value: |
+                -Dfile.encoding=UTF-8
+          volumeMounts:
+            - mountPath: /nfs
+              name: nfs
+      volumes:
+        - name: nfs
+          persistentVolumeClaim:
+            claimName: nfs
+
+---
+#==================================================
+# fintics-web service
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: fintics-web
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8080"
+spec:
+  type: LoadBalancer
+  selector:
+    app: soma-admin
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
