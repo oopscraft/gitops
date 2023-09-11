@@ -70,7 +70,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: soma-admin
+    app: fintics-web
   ports:
     - protocol: TCP
       port: 8080
