@@ -1,26 +1,26 @@
 #==================================================
-# fintics-web deployment
+# fintics deployment
 #==================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fintics-web
+  name: fintics
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: fintics-web
-  replicas: 2
+      app: fintics
+  replicas: 1
   template:
     metadata:
       labels:
-        app: fintics-web
+        app: fintics
     spec:
       imagePullSecrets:
         - name: docker-credentials
       containers:
         - name: fintics-web
-          image: 192.168.0.2:9997/oopscraft/fintics-web:latest
+          image: 192.168.0.2:9997/oopscraft/fintics:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -55,7 +55,7 @@ spec:
 
 ---
 #==================================================
-# fintics-web service
+# fintics service
 #==================================================
 apiVersion: v1
 kind: Service
@@ -70,7 +70,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: fintics-web
+    app: fintics
   ports:
     - protocol: TCP
       port: 8080

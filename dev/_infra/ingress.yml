@@ -149,8 +149,8 @@ spec:
                 name: soma-collector
                 port:
                   number: 8080
-    # fintics-web
-    - host: fintics-web.oopscraft.org
+    # fintics
+    - host: fintics.oopscraft.org
       http:
         paths:
           - pathType: Prefix
@@ -158,17 +158,6 @@ spec:
             backend:
               service:
                 name: fintics-web
-                port:
-                  number: 8080
-    # fintics-collector
-    - host: fintics-collector.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: fintics-collector
                 port:
                   number: 8080
     # keycloak
