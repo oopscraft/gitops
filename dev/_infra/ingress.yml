@@ -157,7 +157,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: fintics-web
+                name: fintics
                 port:
                   number: 8080
     # keycloak
