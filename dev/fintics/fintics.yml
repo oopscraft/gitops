@@ -35,6 +35,8 @@ spec:
             initialDelaySeconds: 60
             periodSeconds: 10
           env:
+            - name: TZ
+              value: Asia/Seoul
             - name: JASYPT_ENCRYPTOR_PASSWORD
               valueFrom:
                 secretKeyRef:
