@@ -21,6 +21,12 @@ spec:
       containers:
         - name: fintics-web
           image: 192.168.0.2:9997/oopscraft/fintics:latest
+          args: [
+            "--spring.sleuth.enabled=true",
+            "--spring.zipkin.enabled=true",
+            "--spring.zipkin.base-url=http://192.168.0.2:9411",
+            "--spring.zipkin.service.name=fintics"
+          ]
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
