@@ -22,6 +22,7 @@ spec:
         - name: arch4j-web
           image: 192.168.0.2:9997/oopscraft/arch4j-web:latest
           args: [
+            "--spring.application.name=arch4j-web"
             "--spring.sleuth.enabled=true",
             "--spring.zipkin.enabled=true",
             "--spring.zipkin.base-url=http://192.160.0.2:9411"
