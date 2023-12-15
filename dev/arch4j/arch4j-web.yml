@@ -25,6 +25,7 @@ spec:
             "--spring.sleuth.enabled=true",
             "--spring.zipkin.enabled=true",
             "--spring.zipkin.base-url=http://192.160.0.2:9411",
+            "--spring.zipkin.sender.type=web",
             "--spring.zipkin.service.name=arch4j-web"
           ]
           imagePullPolicy: Always
