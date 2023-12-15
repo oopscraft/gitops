@@ -24,8 +24,8 @@ spec:
           args: [
             "--spring.sleuth.enabled=true",
             "--spring.zipkin.enabled=true",
-            "--spring.zipkin.service.name=arch4j-web",
-            "--spring.zipkin.base-url=http://192.160.0.2:9411"
+            "--spring.zipkin.base-url=http://ip_192_168_0_2:9411",
+            "--spring.zipkin.service.name=arch4j-web"
           ]
           imagePullPolicy: Always
           ports:
