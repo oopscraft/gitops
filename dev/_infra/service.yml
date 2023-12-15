@@ -4,7 +4,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ip_192_168_0_2
+  name: ip-192-168-0-2
 spec:
   type: ExternalName
   externalName: 192.168.0.2
