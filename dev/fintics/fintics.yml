@@ -30,16 +30,16 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-#          readinessProbe:
-#            tcpSocket:
-#              port: 8080
-#            initialDelaySeconds: 30
-#            periodSeconds: 10
-#          livenessProbe:
-#            tcpSocket:
-#              port: 8080
-#            initialDelaySeconds: 60
-#            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
           env:
             - name: TZ
               value: Asia/Seoul
