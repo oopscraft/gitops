@@ -21,9 +21,6 @@ spec:
       containers:
         - name: fintics
           image: 192.168.0.2:9997/oopscraft/fintics:latest
-          resources:
-            requests:
-              memory: "512Mi"
           args: [
             "--spring.sleuth.enabled=true",
             "--spring.zipkin.enabled=true",
@@ -33,6 +30,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              memory: "512Mi"
           readinessProbe:
             tcpSocket:
               port: 8080
