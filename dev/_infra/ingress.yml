@@ -1,36 +1,10 @@
 #==================================================
-# argocd(headless)
-#==================================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: argocd
-  namespace: infra
-spec:
-  type: ExternalName
-  externalName: argocd-server.argocd.svc.cluster.local
-
----
-#==================================================
-# prometheus(headless)
-#==================================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus
-  namespace: infra
-spec:
-  type: ExternalName
-  externalName: prometheus-server.prometheus.svc.cluster.local
-
----
-#==================================================
-# ingress
+# ingress-https
 #==================================================
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
+  name: ingress-https
   namespace: infra
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
@@ -59,7 +33,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-http
-  namespace: default
+  namespace: infra
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 1024m
 spec:
@@ -121,14 +95,14 @@ spec:
                 port:
                   number: 8080
     # fintics
-    - host: fintics.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: fintics
-                port:
-                  number: 8080
+#    - host: fintics.oopscraft.org
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: fintics
+#                port:
+#                  number: 8080
 

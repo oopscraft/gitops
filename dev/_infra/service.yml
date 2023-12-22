@@ -1,26 +1,24 @@
 #==================================================
-# argocd
+# argocd(headless)
 #==================================================
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: argocd
   name: argocd
+  namespace: infra
 spec:
   type: ExternalName
   externalName: argocd-server.argocd.svc.cluster.local
 
 ---
 #==================================================
-# prometheus
+# prometheus(headless)
 #==================================================
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: argocd
   name: prometheus
+  namespace: infra
 spec:
   type: ExternalName
   externalName: prometheus-server.prometheus.svc.cluster.local
-
-
