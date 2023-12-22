@@ -20,7 +20,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    # prometheus
+    # fintics
     - host: fintics.oopscraft.org
       http:
         paths:

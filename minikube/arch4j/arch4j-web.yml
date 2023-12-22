@@ -1,11 +1,34 @@
 #==================================================
+# arch4j-web service
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: arch4j-web
+  namespace: arch4j
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8080"
+spec:
+  type: LoadBalancer
+  selector:
+    app: arch4j-web
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+#==================================================
 # arch4j-web deployment
 #==================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: arch4j-web
-  namespace: default
+  namespace: arch4j
 spec:
   selector:
     matchLabels:
@@ -59,25 +82,3 @@ spec:
           persistentVolumeClaim:
             claimName: nfs
 
----
-#==================================================
-# arch4j-web service
-#==================================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: arch4j-web
-  namespace: default
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/actuator/prometheus"
-    prometheus.io/port: "8080"
-spec:
-  type: LoadBalancer
-  selector:
-    app: arch4j-web
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
