@@ -40,7 +40,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fintics
-  namespace: default
+  namespace: fintics
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
     prometheus.io/scrape: "true"
@@ -63,7 +63,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fintics
-  namespace: default
+  namespace: fintics
 spec:
   selector:
     matchLabels:
