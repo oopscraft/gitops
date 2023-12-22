@@ -117,21 +117,27 @@ spec:
       volumes:
         - name: pv-data
           persistentVolumeClaim:
-            claimName: pvc-data
+#            claimName: pvc-data
+            accessModes:
+              - ReadWriteMany
+            resources:
+              requests:
+                storage: 100Mi
+
 
 ---
 #==================================================
 # pvc-data
 #==================================================
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-data
-  namespace: fintics
-spec:
-  volumeName: pv-data
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: pvc-data
+#  namespace: fintics
+#spec:
+#  volumeName: pv-data
+#  accessModes:
+#    - ReadWriteMany
+#  resources:
+#    requests:
+#      storage: 100Mi
