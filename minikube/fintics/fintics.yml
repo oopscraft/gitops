@@ -113,9 +113,9 @@ spec:
                 -Dfile.encoding=UTF-8
           volumeMounts:
             - mountPath: /data
-              name: data
+              name: pv-data
       volumes:
-        - name: data
+        - name: pv-data
           persistentVolumeClaim:
             claimName: pvc-data
 
