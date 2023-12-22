@@ -47,6 +47,7 @@ spec:
             path: "/"
             backend:
               service:
+                namespace: argocd
                 name: argocd
                 port:
                   number: 80
@@ -58,6 +59,7 @@ spec:
             path: "/"
             backend:
               service:
+                namespace: prometheus
                 name: prometheus
                 port:
                   number: 80
