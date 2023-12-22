@@ -1,10 +1,10 @@
 #==================================================
-# nfs pv
+# data pv
 #==================================================
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs
+  name: data
 spec:
   accessModes:
     - ReadWriteMany
@@ -14,26 +14,26 @@ spec:
   nfs:
     server: 192.168.0.2
     path: /home/chomookun/nfs
-  claimRef:
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    name: nfs
-    namespace: default
+#  claimRef:
+#    apiVersion: v1
+#    kind: PersistentVolumeClaim
+#    name: nfs
+#    namespace: default
 
 ---
 #==================================================
 # nfs pvc
 #==================================================
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs
-  namespace: default
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: nfs
+#  namespace: default
+#spec:
+#  accessModes:
+#    - ReadWriteMany
+#  resources:
+#    requests:
+#      storage: 100Mi
 
 

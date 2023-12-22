@@ -112,10 +112,26 @@ spec:
               value: |
                 -Dfile.encoding=UTF-8
           volumeMounts:
-            - mountPath: /nfs
-              name: nfs
+            - mountPath: /data
+              name: data
       volumes:
-        - name: nfs
+        - name: data
           persistentVolumeClaim:
-            claimName: nfs
+            claimName: data
 
+---
+#==================================================
+# data pvc
+#==================================================
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data
+  namespace: fintics
+spec:
+  volumeName: data
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
