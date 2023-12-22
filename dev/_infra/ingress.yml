@@ -5,7 +5,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-https
-  namespace: argocd
+  namespace: default
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -22,6 +22,7 @@ spec:
             backend:
               service:
                 name: argocd-server
+                namespace: argocd
                 port:
                   number: 80
 
