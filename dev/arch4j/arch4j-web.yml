@@ -30,9 +30,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-          resources:
-            requests:
-              memory: "512Mi"
           readinessProbe:
             tcpSocket:
               port: 8080
