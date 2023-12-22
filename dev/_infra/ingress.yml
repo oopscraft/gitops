@@ -21,7 +21,7 @@ spec:
             path: "/"
             backend:
               service:
-                namespace: argocd
+                namespace: argocd-server
                 name: argocd
                 port:
                   number: 443
