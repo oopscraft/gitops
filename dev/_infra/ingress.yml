@@ -1,29 +1,29 @@
 #==================================================
 # ingress-https
 #==================================================
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-https
-  namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
-spec:
-  ingressClassName: nginx
-  rules:
-    # argocd
-    - host: argocd.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 80
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: ingress-https
+#  namespace: default
+#  annotations:
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#    # argocd
+#    - host: argocd.oopscraft.org
+#      http:
+#        paths:
+#          - pathType: Prefix
+#            path: "/"
+#            backend:
+#              service:
+#                name: argocd-server
+#                port:
+#                  number: 80
 
 ---
 #==================================================
@@ -39,6 +39,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+    # argocd
+    - host: argocd.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
     # prometheus
     - host: prometheus.oopscraft.org
       http:
