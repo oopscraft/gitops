@@ -39,50 +39,17 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    # code-server
-    - host: code-server.oopscraft.org
-      http:
-         paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: ip-192-168-0-5
-                port:
-                  number: 8000
-    # jenkins
-    - host: jenkins.oopscraft.org
+    # argocd
+    - host: argocd.oopscraft.org
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: ip-192-168-0-2
+                name: argocd
                 port:
-                  number: 9999
-    # nexus
-    - host: nexus.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: ip-192-168-0-2
-                port:
-                  number: 9998
-    # scouter
-    - host: scouter.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: ip-192-168-0-2
-                port:
-                  number: 6188
+                  number: 80
     # prometheus
     - host: prometheus.oopscraft.org
       http:
@@ -94,17 +61,6 @@ spec:
                 name: prometheus
                 port:
                   number: 80
-    # grafana
-    - host: grafana.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: ip-192-168-0-2
-                port:
-                  number: 3000
     # arch4j-web
     - host: arch4j-web.oopscraft.org
       http:
@@ -160,26 +116,4 @@ spec:
                 name: fintics
                 port:
                   number: 8080
-    # keycloak
-    - host: keycloak.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: ip-192-168-0-2
-                port:
-                  number: 9996
-    # torrent
-    - host: torrent.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: ip-192-168-0-2
-                port:
-                  number: 9091
 
