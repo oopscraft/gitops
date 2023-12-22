@@ -5,7 +5,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: argocd
-  namespace: infra
+  namespace: default
 spec:
   type: ExternalName
   externalName: argocd-server.argocd.svc.cluster.local
@@ -18,7 +18,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: prometheus
-  namespace: infra
+  namespace: default
 spec:
   type: ExternalName
   externalName: prometheus-server.prometheus.svc.cluster.local

@@ -1,62 +1,4 @@
 #==================================================
-# fintics namespace
-#==================================================
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: fintics
-
----
-#==================================================
-# fintics ingress
-#==================================================
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: fintics
-  namespace: fintics
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
-spec:
-  ingressClassName: nginx
-  rules:
-    # fintics
-    - host: fintics.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: fintics
-                port:
-                  number: 80
-
----
-#==================================================
-# fintics service
-#==================================================
-apiVersion: v1
-kind: Service
-metadata:
-  name: fintics
-  namespace: fintics
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/actuator/prometheus"
-    prometheus.io/port: "8080"
-spec:
-  type: LoadBalancer
-  selector:
-    app: fintics
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
-
----
-#==================================================
 # fintics deployment
 #==================================================
 apiVersion: apps/v1
@@ -121,17 +63,23 @@ spec:
 
 ---
 #==================================================
-# pvc-data
+# fintics service
 #==================================================
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: Service
 metadata:
-  name: pvc-data
+  name: fintics
   namespace: fintics
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8080"
 spec:
-  volumeName: pv-data
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Mi
+  type: LoadBalancer
+  selector:
+    app: fintics
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

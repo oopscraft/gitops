@@ -18,22 +18,21 @@ spec:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: pvc-data
-    namespace: fintics
+    namespace: default
 
 ---
 #==================================================
-# nfs pvc
+# pvc-data
 #==================================================
-#apiVersion: v1
-#kind: PersistentVolumeClaim
-#metadata:
-#  name: nfs
-#  namespace: default
-#spec:
-#  accessModes:
-#    - ReadWriteMany
-#  resources:
-#    requests:
-#      storage: 100Mi
-
-
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-data
+  namespace: default
+spec:
+  volumeName: pv-data
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi

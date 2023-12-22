@@ -5,7 +5,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-https
-  namespace: infra
+  namespace: default
   annotations:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -33,7 +33,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-http
-  namespace: infra
+  namespace: default
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 1024m
 spec:
@@ -61,15 +61,15 @@ spec:
                 name: arch4j-web
                 port:
                   number: 8080
-    # batman-admin
-    - host: batman-admin.oopscraft.org
+    # fintics
+    - host: fintics.oopscraft.org
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: batman-admin
+                name: fintics
                 port:
                   number: 8080
     # soma-admin
@@ -94,15 +94,15 @@ spec:
                 name: soma-collector
                 port:
                   number: 8080
-    # fintics
-#    - host: fintics.oopscraft.org
-#      http:
-#        paths:
-#          - pathType: Prefix
-#            path: "/"
-#            backend:
-#              service:
-#                name: fintics
-#                port:
-#                  number: 8080
+    # batman-admin
+    - host: batman-admin.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: batman-admin
+                port:
+                  number: 8080
 
