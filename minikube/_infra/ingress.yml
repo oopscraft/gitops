@@ -47,7 +47,7 @@ spec:
             path: "/"
             backend:
               service:
-                name: prometheus-server
+                name: prometheus
                 port:
                   number: 80
     # arch4j-web
