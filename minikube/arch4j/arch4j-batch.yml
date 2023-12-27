@@ -1,0 +1,39 @@
+#==================================================
+# arch4j-batch job (create when job execute)
+#==================================================
+#apiVersion: batch/v1
+#kind: Job
+#metadata:
+#  name: arch4j-batch
+#spec:
+#  ttlSecondsAfterFinished: 100
+#  template:
+#    spec:
+#      restartPolicy: Never
+#      imagePullSecrets:
+#        - name: docker-credentials
+#      containers:
+#        - name: arch4j-batch
+#          image: 192.168.0.2:9997/oopscraft/arch4j-batch:latest
+#          args: []
+#          imagePullPolicy: Always
+#          env:
+#            - name: JASYPT_ENCRYPTOR_PASSWORD
+#              valueFrom:
+#                secretKeyRef:
+#                  name: secret
+#                  key: jasypt_encryptor_password
+#            - name: SPRING_PROFILES_ACTIVE
+#              value: dev
+#            - name: JAVA_TOOL_OPTIONS
+#              value: |
+#                -Dfile.encoding=UTF-8
+#          volumeMounts:
+#            - mountPath: /data
+#              name: data
+#      volumes:
+#        - name: data
+#          persistentVolumeClaim:
+#            claimName: pvc-data
+
+
