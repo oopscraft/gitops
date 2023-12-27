@@ -6,7 +6,7 @@
 #metadata:
 #  name: arch4j-batch
 #spec:
-#  ttlSecondsAfterFinished: 100
+#  ttlSecondsAfterFinished: 86400
 #  template:
 #    spec:
 #      restartPolicy: Never
