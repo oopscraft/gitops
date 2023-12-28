@@ -1,7 +1,7 @@
-#==================================================
+#=========================================================
 # creates api token manually, after that
-# shell> kubectl create token default
-#==================================================
+# shell> kubectl create token default --duration=8760h
+#=========================================================
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
