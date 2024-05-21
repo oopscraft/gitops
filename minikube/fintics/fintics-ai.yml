@@ -1,0 +1,70 @@
+#==================================================
+# fintics-ai deployment
+#==================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintics-ai
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: fintics-ai
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fintics-ai
+    spec:
+      imagePullSecrets:
+        - name: docker-credentials
+      containers:
+        - name: fintics
+          image: 192.168.0.2:9997/oopscraft/fintics-ai:latest
+          args: []
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 600
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 600
+            periodSeconds: 10
+          env:
+            - name: TZ
+              value: Asia/Seoul
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: pvc-data
+
+---
+#==================================================
+# fintics-ai service
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: fintics-ai
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8080"
+spec:
+  type: LoadBalancer
+  selector:
+    app: fintics-ai
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
