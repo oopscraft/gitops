@@ -72,6 +72,17 @@ spec:
                 name: fintics
                 port:
                   number: 8080
+    # fintics-ai
+    - host: fintics-ai.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: fintics-ai
+                port:
+                  number: 8080
     # soma-admin
     - host: soma-admin.oopscraft.org
       http:
