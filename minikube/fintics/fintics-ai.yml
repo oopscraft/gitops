@@ -38,6 +38,8 @@ spec:
           env:
             - name: TZ
               value: Asia/Seoul
+            - name: OLLAMA_URL
+              value: http://192.168.0.2:11434
           volumeMounts:
             - mountPath: /data
               name: data
