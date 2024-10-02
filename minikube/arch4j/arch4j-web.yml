@@ -51,6 +51,7 @@ spec:
             - name: JAVA_TOOL_OPTIONS
               value: |
                 -Dfile.encoding=UTF-8
+                -Dnetworkaddress.cache.ttl=1
           volumeMounts:
             - mountPath: /data
               name: data
