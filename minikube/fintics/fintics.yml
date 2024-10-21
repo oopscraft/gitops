@@ -54,6 +54,7 @@ spec:
               value: |
                 -Dfile.encoding=UTF-8
                 -Dnetworkaddress.cache.ttl=1
+                -Dhttps.protocols=TLSv1.2
           volumeMounts:
             - mountPath: /data
               name: data
