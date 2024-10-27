@@ -1,0 +1,86 @@
+#==================================================
+# fintics deployment
+#==================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintics-etf
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: fintics-etf
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fintics-etf
+    spec:
+      imagePullSecrets:
+        - name: docker-credentials
+      containers:
+        - name: fintics-etf
+          image: 192.168.0.2:9997/oopscraft/fintics-etf:latest
+          args: [
+            "--spring.sleuth.enabled=true",
+            "--spring.zipkin.enabled=true",
+            "--spring.zipkin.base-url=http://192.168.0.2:9411",
+            "--spring.zipkin.service.name=fintics-etf"
+          ]
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 180
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 180
+            periodSeconds: 10
+          env:
+            - name: TZ
+              value: Asia/Seoul
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: jasypt_encryptor_password
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+            - name: JAVA_TOOL_OPTIONS
+              value: |
+                -Dfile.encoding=UTF-8
+                -Dnetworkaddress.cache.ttl=1
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: pvc-data
+
+---
+#==================================================
+# fintics-etf service
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: fintics-etf
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8080"
+spec:
+  type: LoadBalancer
+  selector:
+    app: fintics-etf
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
