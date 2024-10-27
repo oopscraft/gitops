@@ -72,6 +72,17 @@ spec:
                 name: fintics
                 port:
                   number: 8080
+    # fintics-etf
+    - host: fintics-etf.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: fintics-etf
+                port:
+                  number: 8080
     # fintics-ai
     - host: fintics-ai.oopscraft.org
       http:
