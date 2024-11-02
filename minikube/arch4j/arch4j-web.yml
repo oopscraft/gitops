@@ -35,11 +35,13 @@ spec:
               port: 8080
             initialDelaySeconds: 60
             periodSeconds: 10
+            failureThreshold: 10
           livenessProbe:
             tcpSocket:
               port: 8080
             initialDelaySeconds: 60
             periodSeconds: 10
+            failureThreshold: 10
           env:
             - name: JASYPT_ENCRYPTOR_PASSWORD
               valueFrom:
