@@ -1,32 +1,27 @@
 #==================================================
-# fintics deployment
+# duice-example deployment
 #==================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fintics
+  name: duice-example
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: fintics
+      app: duice-example
   replicas: 1
   template:
     metadata:
       labels:
-        app: fintics
+        app: duice-example
     spec:
       imagePullSecrets:
         - name: docker-credentials
       containers:
-        - name: fintics
-          image: 192.168.0.2:9997/oopscraft/fintics:latest
-          args: [
-            "--spring.sleuth.enabled=false",
-            "--spring.zipkin.enabled=false",
-            "--spring.zipkin.base-url=http://192.168.0.2:9411",
-            "--spring.zipkin.service.name=fintics"
-          ]
+        - name: duice-example
+          image: 192.168.0.2:9997/oopscraft/duice-example:latest
+          args: []
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -45,17 +40,6 @@ spec:
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: JASYPT_ENCRYPTOR_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secret
-                  key: jasypt_encryptor_password
-            - name: SPRING_PROFILES_ACTIVE
-              value: dev
-            - name: JAVA_TOOL_OPTIONS
-              value: |
-                -Dfile.encoding=UTF-8
-                -Dnetworkaddress.cache.ttl=1
           volumeMounts:
             - mountPath: /data
               name: data
@@ -66,22 +50,19 @@ spec:
 
 ---
 #==================================================
-# fintics service
+# duice-example service
 #==================================================
 apiVersion: v1
 kind: Service
 metadata:
-  name: fintics
+  name: duice-example
   namespace: default
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/actuator/prometheus"
-    prometheus.io/port: "8080"
 spec:
   type: LoadBalancer
   selector:
-    app: fintics
+    app: duice-example
   ports:
     - protocol: TCP
       port: 8080
