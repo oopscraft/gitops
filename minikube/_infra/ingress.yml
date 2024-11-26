@@ -71,7 +71,7 @@ spec:
               service:
                 name: duice-example
                 port:
-                  number: 8080
+                  number: 3000
     # fintics
     - host: fintics.oopscraft.org
       http:
