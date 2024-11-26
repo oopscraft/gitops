@@ -61,6 +61,17 @@ spec:
                 name: arch4j-web
                 port:
                   number: 8080
+    # duice-example
+    - host: duice-example.oopscraft.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: duice-example
+                port:
+                  number: 8080
     # fintics
     - host: fintics.oopscraft.org
       http:
