@@ -1,26 +1,26 @@
 #==================================================
-# duice-site deployment
+# duice-example deployment
 #==================================================
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: duice-site
+  name: duice-example
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: duice-site
+      app: duice-example
   replicas: 1
   template:
     metadata:
       labels:
-        app: duice-site
+        app: duice-example
     spec:
       imagePullSecrets:
         - name: docker-credentials
       containers:
-        - name: duice-site
-          image: 192.168.0.2:9997/oopscraft/duice-site:latest
+        - name: duice-example
+          image: 192.168.0.2:9997/oopscraft/duice-example:latest
           args: []
           imagePullPolicy: Always
           ports:
@@ -50,19 +50,19 @@ spec:
 
 ---
 #==================================================
-# duice-site service
+# duice-example service
 #==================================================
 apiVersion: v1
 kind: Service
 metadata:
-  name: duice-site
+  name: duice-example
   namespace: default
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 spec:
   type: LoadBalancer
   selector:
-    app: duice-site
+    app: duice-example
   ports:
     - protocol: TCP
       port: 3000
