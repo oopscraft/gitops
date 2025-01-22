@@ -20,7 +20,7 @@ spec:
         - name: docker-credentials
       containers:
         - name: arch4j-web
-          image: 192.168.0.2:9997/oopscraft/arch4j-web:latest
+          image: 192.168.0.2:9997/chomookun/arch4j-web:latest
           args: [
             "--spring.sleuth.enabled=true",
             "--spring.zipkin.enabled=true",
