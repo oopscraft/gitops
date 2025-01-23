@@ -14,7 +14,7 @@
 #        - name: docker-credentials
 #      containers:
 #        - name: arch4j-batch
-#          image: 192.168.0.2:9997/oopscraft/arch4j-batch:latest
+#          image: 192.168.0.2:9997/chomookun/arch4j-batch:latest
 #          args: []
 #          imagePullPolicy: Always
 #          env:
