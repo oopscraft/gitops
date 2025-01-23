@@ -20,7 +20,7 @@ spec:
         - name: docker-credentials
       containers:
         - name: fintics
-          image: 192.168.0.2:9997/oopscraft/fintics:latest
+          image: 192.168.0.2:9997/chomookun/fintics:latest
           args: [
             "--spring.sleuth.enabled=false",
             "--spring.zipkin.enabled=false",

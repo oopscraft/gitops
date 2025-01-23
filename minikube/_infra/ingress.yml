@@ -72,17 +72,6 @@ spec:
                 name: duice-example
                 port:
                   number: 3000
-    # prometheus
-    - host: prometheus.oopscraft.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: prometheus
-                port:
-                  number: 80
     # fintics
     - host: fintics.oopscraft.org
       http:
