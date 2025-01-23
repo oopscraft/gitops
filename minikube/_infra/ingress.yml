@@ -73,7 +73,7 @@ spec:
                 port:
                   number: 3000
     # fintics
-    - host: fintics.oopscraft.org
+    - host: fintics.chomookun.org
       http:
         paths:
           - pathType: Prefix
@@ -84,7 +84,7 @@ spec:
                 port:
                   number: 8080
     # fintics-etf
-    - host: fintics-etf.oopscraft.org
+    - host: fintics-etf.chomookun.org
       http:
         paths:
           - pathType: Prefix
@@ -95,7 +95,7 @@ spec:
                 port:
                   number: 8080
     # fintics-ai
-    - host: fintics-ai.oopscraft.org
+    - host: fintics-ai.chomookun.org
       http:
         paths:
           - pathType: Prefix
