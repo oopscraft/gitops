@@ -20,7 +20,7 @@ spec:
         - name: docker-credentials
       containers:
         - name: duice-example
-          image: 192.168.0.2:9997/oopscraft/duice-example:latest
+          image: 192.168.0.2:9997/chomookun/duice-example:latest
           args: []
           imagePullPolicy: Always
           ports:
