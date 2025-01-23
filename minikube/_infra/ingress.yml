@@ -62,7 +62,7 @@ spec:
                 port:
                   number: 80
     # arch4j-web
-    - host: arch4j-web.oopscraft.org
+    - host: arch4j-web.chomookun.org
       http:
         paths:
           - pathType: Prefix
