@@ -24,16 +24,16 @@ spec:
           args: []
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           readinessProbe:
             tcpSocket:
-              port: 8080
+              port: 8081
             initialDelaySeconds: 60
             periodSeconds: 10
             failureThreshold: 10
           livenessProbe:
             tcpSocket:
-              port: 8080
+              port: 8081
             initialDelaySeconds: 60
             periodSeconds: 10
             failureThreshold: 10
@@ -77,5 +77,5 @@ spec:
     app: arch4j-daemon
   ports:
     - protocol: TCP
-      port: 8080
+      port: 8081
       targetPort: 8081
