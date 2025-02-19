@@ -1,0 +1,81 @@
+#==================================================
+# fintics deployment
+#==================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintics-daemon
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: fintics-daemon
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fintics-daemon
+    spec:
+      imagePullSecrets:
+        - name: docker-credentials
+      containers:
+        - name: fintics
+          image: 192.168.0.2:9997/chomookun/fintics-daemon:latest
+          args: []
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          readinessProbe:
+            tcpSocket:
+              port: 8081
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            failureThreshold: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            failureThreshold: 10
+          env:
+            - name: TZ
+              value: Asia/Seoul
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: jasypt_encryptor_password
+            - name: JAVA_TOOL_OPTIONS
+              value: |
+                -Dfile.encoding=UTF-8
+                -Dnetworkaddress.cache.ttl=1
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: pvc-data
+
+---
+#==================================================
+# fintics-daemon service
+#==================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: fintics-daemon
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
+    prometheus.io/port: "8080"
+spec:
+  type: LoadBalancer
+  selector:
+    app: fintics-daemon
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
