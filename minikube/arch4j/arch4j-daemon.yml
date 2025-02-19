@@ -25,12 +25,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
-          readinessProbe:
-            tcpSocket:
-              port: 8081
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            failureThreshold: 10
           livenessProbe:
             tcpSocket:
               port: 8081
@@ -43,8 +37,6 @@ spec:
                 secretKeyRef:
                   name: secret
                   key: jasypt_encryptor_password
-            - name: SPRING_PROFILES_ACTIVE
-              value: dev
             - name: JAVA_TOOL_OPTIONS
               value: |
                 -Dfile.encoding=UTF-8
