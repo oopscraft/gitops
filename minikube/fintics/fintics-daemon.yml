@@ -33,7 +33,7 @@ spec:
             failureThreshold: 10
           livenessProbe:
             tcpSocket:
-              port: 8080
+              port: 8081
             initialDelaySeconds: 60
             periodSeconds: 10
             failureThreshold: 10
