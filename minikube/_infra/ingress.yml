@@ -72,28 +72,28 @@ spec:
                 name: arch4j-daemon
                 port:
                   number: 8081
-    # duice-example
-    - host: duice-example.chomookun.org
+    # fintics-web
+    - host: fintics-web.chomookun.org
       http:
         paths:
           - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: duice-example
-                port:
-                  number: 3000
-    # fintics
-    - host: fintics.chomookun.org
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: fintics
+                name: fintics-web
                 port:
                   number: 8080
+    # fintics-daemon
+    - host: fintics-daemon.chomookun.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: fintics-daemon
+                port:
+                  number: 8081
     # fintics-etf
     - host: fintics-etf.chomookun.org
       http:
@@ -116,6 +116,17 @@ spec:
                 name: fintics-ai
                 port:
                   number: 8080
+    # duice-example
+    - host: duice-example.chomookun.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: duice-example
+                port:
+                  number: 3000
     # soma-admin
     - host: soma-admin.oopscraft.org
       http:
